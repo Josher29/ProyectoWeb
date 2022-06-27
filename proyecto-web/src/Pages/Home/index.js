@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
+import SideBar from "../../Components/SideBar";
+import Header from "../../Components/Header";
 
 function Home() {
     const theme = useSelector((state) => state.app.theme);
@@ -6,9 +8,13 @@ function Home() {
     const dispatch = useDispatch();
   
     return (
-      <div>
-        <h1>¡Bienvenidos!</h1>
-      </div>
+      <>
+        <Header />
+        <SideBar />
+        <div>
+          <h1>¡Bienvenidos!</h1>
+        </div>
+      </>
     );
   }
   

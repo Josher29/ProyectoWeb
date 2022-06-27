@@ -12,6 +12,7 @@ function App() {
     (state) => state.app.loading
   );
 
+  
 
   return loading ? (
     <Spinner/>

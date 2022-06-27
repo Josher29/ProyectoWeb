@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { /*useDispatch,*/ useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 export default function Login() {
@@ -10,7 +10,7 @@ export default function Login() {
     const userIsLoggedIn = useSelector((state) => state.user.userIsLoggedIn);
     const errorMessage = useSelector((state) => state.user.errorMessage);
   
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
   
     return userIsLoggedIn ? (
       <Navigate to="/" />
