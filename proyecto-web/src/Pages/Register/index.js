@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
@@ -7,10 +7,31 @@ export default function Register(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [passwordChanged, setPasswordChanged] = useState(false);
+    const [passwordError, setPasswordError] = useState (false);
   
     const theme = useSelector((state) => state.app.theme);
     const userIsLoggedIn = useSelector((state) => state.user.userIsLoggedIn);
     const errorMessage = useSelector((state) => state.user.errorMessage);
+
+    useEffect((e) => {
+
+        if(passwordChanged){
+            if(password === passwordConfirmation){
+                setPasswordError(false);
+                setPasswordChanged(false);
+            }
+            else {
+                setPasswordError(true);
+            }
+        }
+    },[passwordConfirmation,passwordChanged,password]
+    )
+
+    const handlerPassConf = (e) => {
+        setPasswordConfirmation(e.target.value);
+        setPasswordChanged(true);
+    }
 
     return (
         <div className="flex items-center justify-center h-screen">
@@ -45,6 +66,11 @@ export default function Register(){
                             setPassword(evt.target.value);
                         }}
                     />
+                    {passwordError && passwordChanged ?
+                        <div>
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> Las contraseñas no coinciden!</p>
+                        </div>
+                        : "" }
                 </div>
                 <div className="mb-4">
                     <input
@@ -52,12 +78,7 @@ export default function Register(){
                         className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
                         type="password"
                         value={passwordConfirmation}
-                        onChange={(evt) => {
-                            setPasswordConfirmation(evt.target.value);
-                            if(password !== passwordConfirmation){
-                                console.log("Las contraseñas no coinciden");
-                            }
-                        }}
+                        onChange={(handlerPassConf)}
                     />
                 </div>
                 <button
