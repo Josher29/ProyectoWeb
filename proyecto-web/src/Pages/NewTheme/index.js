@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
 import Creatable, { useCreatable } from "react-select/creatable";
 import SideBar from "../../Components/SideBar";
 import Header from "../../Components/Header";
@@ -9,6 +10,14 @@ const options = [
 ]
 
 export default function NewTheme(){
+
+    const [img, setImg] = useState();
+
+    const onImageChange = (e) => {
+      const [file] = e.target.files;
+      setImg(URL.createObjectURL(file));
+    };
+
     return(
         <>
         <div>
@@ -24,7 +33,9 @@ export default function NewTheme(){
                     <div>
                         <label>
                             Nombre del tema:
-                            <input type="text" name="name"/>
+                            <div>
+                                <input type="text" name="name"/>
+                            </div>
                         </label>
                     </div>
                     <div style={{width:"500px"}}>
@@ -38,7 +49,18 @@ export default function NewTheme(){
                     <div>
                         <label>
                             Descripción:
-                            <input type="text" name="Descripción"/>
+                            <div>
+                                <input type="text" name="Descripción"/>
+                            </div>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            Portada:
+                            <div>
+                                <input type="file" onChange={onImageChange}/>
+                                <img src={img} alt="" class="rounded-full block mt-2" />
+                            </div>
                         </label>
                     </div>
                 </form>
