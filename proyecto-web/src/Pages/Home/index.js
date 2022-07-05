@@ -9,12 +9,14 @@ function Home() {
   
     return (
       <>
+      <div className="m-auto max-w-5xl">
         <Header />
         <SideBar />
-        <div>
+        <div >
           <h1>¡Bienvenidos!</h1>
         </div>
-      </>
+      </div>
+        </>
     );
   }
   

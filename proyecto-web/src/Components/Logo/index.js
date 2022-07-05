@@ -3,7 +3,7 @@ function Logo({ width, height }) {
       <img
         className={`${width || "w-20"} ${height || "h-20"}`}
         alt="Logo"
-        src="https://bit.ly/logo-ci0137"
+        src="%PUBLIC_URL%/logo.png"
       />
     );
   }
