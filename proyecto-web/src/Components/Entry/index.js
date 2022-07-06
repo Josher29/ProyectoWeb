@@ -19,7 +19,7 @@ function Entry(){
               
                 <div className="justify-start col-span-5 flex-col flex">
                     <h2 className="ml-6 font-bold items-start col-span-2">Usuario, Opina sobre *tema* que:</h2>
-                    <h3 className="m-6 h-20 border-2" >Me cago en la liga </h3> 
+                    <h3 className="m-6 h-20 border-2" >Opinion de usuario </h3> 
                 </div>
                 <button onClick={() => { dispatch(addReaction()) }} 
                 className="w-24 h-12 col-start-5 p-1 m-1 font-bold text-lg rounded-md 
