@@ -24,7 +24,12 @@ function NewThemeForm() {
                             Portada:
                             <div>
                                 <input type="file" onChange={onImageChange} />
-                                <img src={img} alt="" className= "scale-75 rounded-full block mt-2" />
+                                <div className="self-center">
+                                    <img
+                                    className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
+                                    src={img}
+                                    />
+                                </div>
                             </div>
                         </label>
                     </div>

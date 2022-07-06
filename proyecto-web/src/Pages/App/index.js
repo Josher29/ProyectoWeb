@@ -7,6 +7,7 @@ import Home from "../Home";
 import Login from "../Login";
 import Register from "../Register";
 import NewTheme from "../NewTheme";
+import Profile from "../Profile";
 
 function App() {
   const loading = useSelector(
@@ -25,6 +26,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="new-theme" element={<NewTheme />} />
+            <Route path="profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
     </MainContainer>
