@@ -3,10 +3,12 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import appSlice from "./Slices/appSlice";
 import userSlice from "./Slices/userSlice";
+import reactionSlice from "./Slices/reactionSlice";
 
 const reducers = combineReducers({
   app: appSlice,
   user: userSlice,
+  reaction: reactionSlice
 });
 
 const rootPersistConfig = {

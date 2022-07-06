@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import SideBar from "../../Components/SideBar";
 import Header from "../../Components/Header";
 import Post from "../../Components/Post";
+import Entry from "../../Components/Entry";
 
 function Home() {
-    const theme = useSelector((state) => state.app.theme);
   
     const dispatch = useDispatch();
   
@@ -16,6 +16,7 @@ function Home() {
         </div>
         <div>
           <Post></Post>
+          <Entry></Entry>
         </div>
       </>
     );
