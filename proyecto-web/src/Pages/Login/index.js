@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { /*useDispatch,*/ useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Logo from "../../Components/Logo";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -12,15 +13,16 @@ export default function Login() {
   
     //const dispatch = useDispatch();
   
-    return userIsLoggedIn ? (
+    return !userIsLoggedIn ? (
       <Navigate to="/" />
     ) : (
-      <div className="grid grid-cols-2 gap-4">
-        <div className="w-2/4 flex items-center justify-center h-screen">
-          <h1>Hola Mundo</h1>
+      <div className="grid grid-cols-2 gap-4 bg-gradient-to-r from-[#fff] via-[#9bb1ff] to-[#7790ee]">
+        <div className="flex items-center justify-center h-screen top-1/2 flex-col">
+          <Logo width="w-96" height="h-96"></Logo>
+          <h2 className="font-bold">Opiná y conocé lo que opinan los demás de lo que está pasando ahora mismo!</h2>
         </div>
         <div className="w-2/4">
-          <div className="flex items-center justify-center h-screen">
+          <div className="flex items-center justify-center h-screen ml-32">
             <div className="text-center">
               <div className="mb-4">
                 <h1 className="text-3xl font-bold">¡Bienvenido!</h1>
@@ -48,7 +50,8 @@ export default function Login() {
               </div>
               {errorMessage && <span className="text-red-500">{errorMessage}</span>}
               <button
-                className="h-[48px] w-full rounded-md bg-sky-500 text-white"
+                className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
+                hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
                 onClick={() => {
 
 

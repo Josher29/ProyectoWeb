@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar";
 function Header(){
     return (
         <>
-            <div className="flex px-4 md:px-8 lg:px-20 py-4 bg-white shadow-md m-auto max-w-5xl relative">
+            <div className="flex px-4 md:px-8 lg:px-20 py-4 bg-white shadow-md m-auto relative">
                 <div className="w-1/2 container">
                     <Logo width="w-20" height="h-20"/>
                 </div>

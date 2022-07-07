@@ -14,9 +14,13 @@ function Home() {
           <Header />
           <SideBar></SideBar>
         </div>
-        <div>
+        <div className="border-4 border-solid">
           <Post></Post>
-          <Entry></Entry>
+          <div>
+            <h1 className="font-bold text-center m-12">Feed</h1>
+            <Entry></Entry>
+          </div>
+          
         </div>
       </>
     );
