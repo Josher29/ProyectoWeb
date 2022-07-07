@@ -11,14 +11,10 @@ function NewTheme(){
     <>
     <div>
         <Header />
+        <SideBar />
     </div>
-    <div className="grid grid-cols-2 gap-0">
-        <div>
-            <SideBar />
-        </div>
-        <div>
+    <div className="h-screen" >
             <NewThemeForm />
-        </div>
     </div>
     </>
     )

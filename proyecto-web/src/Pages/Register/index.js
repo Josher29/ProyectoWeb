@@ -9,6 +9,13 @@ export default function Register(){
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [passwordChanged, setPasswordChanged] = useState(false);
     const [passwordError, setPasswordError] = useState (false);
+
+    const [img,setImg] = useState();
+
+    const onImageChange = (e) => {
+        const [file] = e.target.files;
+        setImg(URL.createObjectURL(file));
+    };
   
     const theme = useSelector((state) => state.app.theme);
     const userIsLoggedIn = useSelector((state) => state.user.userIsLoggedIn);
@@ -35,7 +42,7 @@ export default function Register(){
 
     return (
         <div className="flex items-center justify-center h-screen">
-           <div className="text-center">
+           <div className="text-center ">
                 <div className="mb-4">
                     <input
                         placeholder="Usuario"
@@ -79,6 +86,22 @@ export default function Register(){
                         type="password"
                         value={passwordConfirmation}
                         onChange={(handlerPassConf)}
+                    />
+                </div>
+                <label className="block text-gray-700 text-sm font-bold mb-1">
+                    Foto de perfil
+                </label>
+                <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker"
+                    id="file"
+                    onChange={onImageChange}
+                    type="file"
+                    placeholder="Su foto de perfil"
+                />
+                <div className="self-center">
+                    <img
+                    className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
+                    src={img}
                     />
                 </div>
                 <button
