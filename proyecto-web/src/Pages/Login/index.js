@@ -13,7 +13,7 @@ export default function Login() {
   
     //const dispatch = useDispatch();
   
-    return !userIsLoggedIn ? (
+    return userIsLoggedIn ? (
       <Navigate to="/" />
     ) : (
       <div className="grid grid-cols-2 gap-4 bg-gradient-to-r from-[#fff] via-[#9bb1ff] to-[#7790ee]">
