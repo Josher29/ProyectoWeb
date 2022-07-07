@@ -59,6 +59,19 @@ export default function Login() {
               >
                 Iniciar Sesión
               </button>
+              <button className="my-3  h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
+                hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
+                onClick={() => {
+
+
+                }} >
+                Registrarse
+                </button>    
+                 
+               <p className="font-bold">Olvidé mi Contraseña</p>   
+
+
+
             </div>
           </div>
         </div>
