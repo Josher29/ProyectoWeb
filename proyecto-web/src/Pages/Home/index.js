@@ -15,7 +15,7 @@ function Home() {
           <SideBar></SideBar>
         </div>
         <div className="h-screen bg-gray-100">
-          <div className="border-4">
+          <div>
             <Post></Post>
             <div>
               <h1 className="font-bold text-center m-12">Feed</h1>
