@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Logo from "../../Components/Logo";
 
 export default function Register(){
     const [username, setUsername] = useState("");
@@ -41,8 +42,11 @@ export default function Register(){
     }
 
     return (
-        <div className="flex items-center justify-center h-screen">
-           <div className="text-center ">
+        <div className="flex items-center justify-center h-screen bg-gradient-to-r from-[#fff] via-[#9bb1ff] to-[#7790ee]">
+           <div className="text-center  ">
+                <div className="mb-5">
+                    <h1 className="text-4xl font-bold ">¡Registrate y se parte de por dos!</h1>
+                </div>
                 <div className="mb-4">
                     <input
                         placeholder="Usuario"
@@ -98,14 +102,15 @@ export default function Register(){
                     type="file"
                     placeholder="Su foto de perfil"
                 />
-                <div className="self-center">
+                <div className="flex justify-center">
                     <img
                     className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
                     src={img}
                     />
                 </div>
                 <button
-                    className="h-[48px] w-full rounded-md bg-sky-500 text-white"
+                    className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
+                    hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
                     onClick={() => {
                     }}
                 >
