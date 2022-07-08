@@ -18,13 +18,8 @@ function Profile (){
             <div>
                 <Header />
             </div>
-            <div>
-                <SideBar/>
-            </div>
-            <div className="h-screen bg-gradient-to-r from-[#fff] via-[#9bb1ff] to-[#7790ee]">
             <div className="lg:max-w-4xl max-w-full mx-auto flex items-center justify-center flex-col">
-                <div className="flex my-3 py-2   w-full flex-row flex-wrap items-center justify-center gap-3 min-h-[50px] text-slate-900">
-                    <div className="self-center">
+                    <div className="self-center flex my-3 w-full flex-row flex-wrap items-center justify-center gap-3 min-h-[50px]">
                         <img
                         className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
                         alt="perfil"
@@ -32,7 +27,7 @@ function Profile (){
                         />
                     </div>
                     <div className="flex flex-col items-center justify-center gap-3 ">
-                        <div className="flex items-center w-full flex-wrap md:justify-start justify-center  gap-3">
+                        <div className="flex items-center w-full flex-wrap gap-3">
                             <h1 className="font-bold text-lg">{"David"}</h1>
                             <button
                             className="h-[48px] w-full rounded-md bg-sky-500 text-white"
@@ -121,8 +116,6 @@ function Profile (){
                         {0 ? "Tus publicaciones" : "Sin publicaciones"}
                     </h1>
                 </div>
-            </div>
-        </div>
         </>
     )
 }
