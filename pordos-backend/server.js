@@ -16,13 +16,13 @@ server.use(cors());
 const usersRoutes = require("./routes/users");
 
 //Mount routes
-server.use("/users", usersRoutes);
+server.use(usersRoutes);
 //server.use("/products", productsRoutes);
 
 //Documentation setup
 //server.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
 
-server.listen(process.env.PORT || 7500);
+server.listen(7500);
 console.log(
   `The server is running at http://localhost:${process.env.PORT || 7500}
    You can find the docs at http://localhost:${process.env.PORT || 7500}/docs`

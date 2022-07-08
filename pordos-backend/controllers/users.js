@@ -1,4 +1,5 @@
-const users = require("../../proyecto-web/src/Data/users")
+const jwt = require("jsonwebtoken");
+const users = require("../../proyecto-web/src/Data/Users.json") //Get Users from JSON
 
 exports.loginUser = async (req, res) => {
     // #swagger.tags = ['Users']
@@ -10,24 +11,25 @@ exports.loginUser = async (req, res) => {
                user = u;
             }
       });
-      if (!user || !(user.password != userPayload.password) ){
+      if (!user || (user.password != userPayload.password) ){
         res.status(401).send("Invalid credentials");
         return;
       }
-      res.json(user);
-      /*
+
       const token = jwt.sign(
-        { userId: user.id, roles: rolesIds },
+        { userId: user.id },
         process.env.JWT_KEY,
         {
           expiresIn: "5m",
         }
       );
+      delete user.password;
       const result = {
-        ...user.toJSON(),
+        user,
         token,
-      }*/
-      //res.json(result);
+      }
+      
+      res.json(result);
     } catch (error) {
       res.status(500).send("Server error: " + error);
     }
