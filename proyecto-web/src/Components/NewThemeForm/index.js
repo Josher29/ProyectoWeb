@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import Creatable, { useCreatable } from "react-select/creatable";
+
 
 const options = [
     { value: "deportes", label: "Deporte" },
-    { value: "musica", label: "Música" }
+    { value: "musica", label: "Música" },
+    { value: "estudios", label: "Estudio"}
 ]
 
 function NewThemeForm() {
@@ -50,11 +51,16 @@ function NewThemeForm() {
                             <div>
                                 <label>
                                     Tipo:
-                                    <Creatable
-                                        className="w-1/2"
-                                        placeholder="Seleccione un tipo"
-                                        options={options} />
                                 </label>
+                                <div>
+                                    <select  className="shadow appearance-none border rounded w-1/2 py-2 px-3 text-grey-darker" name="type" id="type" options={options}>
+                                       {options.map((option) => (
+                                        <option key={option.value} value={option.value}>
+                                            {option.label}
+                                        </option>
+                                       ))} 
+                                    </select>
+                                </div>
                             </div>
                             <div>
                                 <label>
