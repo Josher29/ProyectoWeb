@@ -30,7 +30,8 @@ function Profile (){
                         <div className="flex items-center w-full flex-wrap gap-3">
                             <h1 className="font-bold text-lg">{"David"}</h1>
                             <button
-                            className="h-[48px] w-full rounded-md bg-sky-500 text-white"
+                            className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
+                            hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
                             margin="1"
                             size="xs"
                             bgColor="bg-deepBlue"
@@ -87,7 +88,8 @@ function Profile (){
                                 />
                                 <div className="w-full flex flex-row py-3 items-end justify-end flex-wrap gap-1">
                                     <button
-                                    className="rounded-md py-2 px-4 bg-sky-500 text-white"
+                                    className="rounded-md py-2 px-4 bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
+                                    hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
                                     onClick={() => {}}
                                     >
                                     Enviar cambios

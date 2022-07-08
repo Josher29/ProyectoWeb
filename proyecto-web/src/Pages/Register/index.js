@@ -44,8 +44,8 @@ export default function Register(){
     return (
         <div className="flex items-center justify-center h-screen bg-gradient-to-r from-[#fff] via-[#9bb1ff] to-[#7790ee]">
            <div className="text-center  ">
-                <div className="mb-5">
-                    <h1 className="text-4xl font-bold ">¡Registrate y se parte de por dos!</h1>
+                <div className="mb-5 flex justify-center">
+                    <h1 className="text-4xl font-bold ">¡Registrate y sé parte de por dos!</h1>
                 </div>
                 <div className="mb-4">
                     <input
