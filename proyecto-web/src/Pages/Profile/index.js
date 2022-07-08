@@ -18,7 +18,8 @@ function Profile (){
             <div>
                 <Header />
             </div>
-            <div className="lg:max-w-4xl max-w-full mx-auto flex items-center justify-center flex-col">
+            <div className="h-screen bg-gray-50">
+            <div className="lg:max-w-4xl max-w-full mx-auto flex items-center justify-center flex-col ">
                     <div className="self-center flex my-3 w-full flex-row flex-wrap items-center justify-center gap-3 min-h-[50px]">
                         <img
                         className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
@@ -118,6 +119,7 @@ function Profile (){
                         {0 ? "Tus publicaciones" : "Sin publicaciones"}
                     </h1>
                 </div>
+            </div>
         </>
     )
 }

@@ -8,12 +8,14 @@ import NewThemeForm from "../../Components/NewThemeForm";
 function NewTheme(){
     return(
     <>
-    <div>
-        <Header />
-        <SideBar />
-    </div>
-    <div className="h-screen" >
-            <NewThemeForm />
+    <div className="h-screen bg-gray-50">
+        <div>
+            <Header />
+            <SideBar />
+        </div>
+        <div >
+                <NewThemeForm />
+        </div>
     </div>
     </>
     )
