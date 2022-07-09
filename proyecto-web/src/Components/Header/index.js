@@ -1,10 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
 import Logo from "../Logo";
 import SearchBar from "../SearchBar";
 import {FaUserCircle} from "react-icons/fa"
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../Slices/userSlice";
 
 function Header(){
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -22,7 +26,9 @@ function Header(){
                     <button onClick={() => navigate("/profile")}>
                         <FaUserCircle size="1.5rem" />
                     </button>
-                    <button>
+                    <button
+                        onClick={() =>  dispatch(logout()).then(
+                        navigate("/login"))} >
                         <RiLogoutBoxRLine size= "1.5rem" />
                     </button>
                 </div>
