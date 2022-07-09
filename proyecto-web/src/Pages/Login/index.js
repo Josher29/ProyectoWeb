@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { /*useDispatch,*/ useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
 import Logo from "../../Components/Logo";
+import { postLogin } from "../../Slices/userSlice";
 
 export default function Login() {
     const [username, setUsername] = useState("");
@@ -11,7 +12,8 @@ export default function Login() {
     const userIsLoggedIn = useSelector((state) => state.user.userIsLoggedIn);
     const errorMessage = useSelector((state) => state.user.errorMessage);
   
-    //const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
   
     return userIsLoggedIn ? (
       <Navigate to="/" />
@@ -53,18 +55,20 @@ export default function Login() {
                 className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                 hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
                 onClick={() => {
-
-
+                  dispatch(
+                    postLogin({
+                      username,
+                      password,
+                    })
+                  );
                 }}
               >
                 Iniciar Sesión
               </button>
               <button className="my-3  h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                 hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
-                onClick={() => {
-
-
-                }} >
+                onClick={() => navigate("/register")} 
+              >
                 Registrarse
                 </button>    
                  

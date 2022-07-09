@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-mixpanel-browser": "^3.2.2"
+  }
+}
