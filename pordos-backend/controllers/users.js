@@ -45,6 +45,7 @@ exports.loginUser = async (req, res) => {
     } */
     try {
       const userPayload = req.body;
+      var err = false;
       const newUser = {
         name:userPayload.name,
         email:userPayload.email,
@@ -55,11 +56,18 @@ exports.loginUser = async (req, res) => {
       users.map((u)=>{
         if(u.email == newUser.email){
           res.status(409).send("Ya existe el usuario");
+          err = true;
         }
         if(u.name == newUser.name){
           res.status(409).send("Ya existe ese nombre de usuario. Intente con otro");
+          err = true;
         }
       });
+
+      if(err){
+        return;
+      }
+
       res.json(newUser); //200
 
 
