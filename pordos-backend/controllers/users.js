@@ -34,3 +34,38 @@ exports.loginUser = async (req, res) => {
       res.status(500).send("Server error: " + error);
     }
   };
+
+
+  exports.createUser = async (req, res) => {
+    // #swagger.tags = ['Users']
+    /*  #swagger.parameters['obj'] = {
+            in: 'body',
+            description: 'Add a user',
+            schema: { $ref: '#/definitions/AddUser' }
+    } */
+    try {
+      const userPayload = req.body;
+      const newUser = {
+        name:userPayload.name,
+        email:userPayload.email,
+        photo:userPayload.photo
+      };
+
+      users.map((u)=>{
+        if(u.email == newUser.email){
+          res.status(409).send("Ya existe el usuario");
+        }
+        if(u.name == newUser.name){
+          res.status(409).send("Ya existe ese nombre de usuario. Intente con otro");
+        }
+      });
+      res.json(newUser); //200
+
+
+    } catch (error) {
+      res.status(500).json({
+        message: "Ocurrió un error al insertar el usuario.",
+        error,
+      });
+    }
+  };

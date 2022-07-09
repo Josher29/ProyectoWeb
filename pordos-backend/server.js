@@ -14,9 +14,11 @@ server.use(express.json());
 server.use(cors());
 
 const usersRoutes = require("./routes/users");
+const themesRoutes = require("./routes/themes");
 
 //Mount routes
 server.use(usersRoutes);
+server.use(themesRoutes);
 //server.use("/products", productsRoutes);
 
 //Documentation setup
