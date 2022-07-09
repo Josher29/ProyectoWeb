@@ -36,24 +36,21 @@ const userSlice = createSlice({
 export const { logout } = userSlice.actions;
 
 export const postLogin = createAsyncThunk('/postLogin', async (credentials) => {
+
     const loginFetch = await fetch('http://localhost:7500/login',{
         method: 'POST',
         headers: {
             "Content-type": "application/json",
         },
         body: JSON.stringify({
-            email: credentials.username,
-            password: credentials.password,
+            email:credentials.username,
+            password:credentials.password,
         }),
     });
     const userData = await loginFetch.json();
+    console.log("status",loginFetch.status)
     if (loginFetch.status === 200){
-        Mixpanel.identify(userData.id);
-        Mixpanel.people.set({
-            $first_name: userData.name,
-            $email: userData.email,
-        });
-    return userData;
+        return userData;
     } else {
         return {
             error: true,
@@ -69,12 +66,13 @@ export const createUser = createAsyncThunk('/createUser', async(newUserData) => 
             "Content-type":"application/json",
         },
         body: JSON.stringify({
+            name: newUserData.username,
             email: newUserData.email,
             password: newUserData.password,
-            photo: newUserData.photo,
+            photo: newUserData.img,
         }),
     });
-    if(newUserFetch === 200){
+    if(newUserFetch.status === 200){
         return newUserFetch;
     } else {
         return {

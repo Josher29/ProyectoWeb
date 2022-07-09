@@ -48,6 +48,7 @@ exports.loginUser = async (req, res) => {
       const newUser = {
         name:userPayload.name,
         email:userPayload.email,
+        password:userPayload.password,
         photo:userPayload.photo
       };
 

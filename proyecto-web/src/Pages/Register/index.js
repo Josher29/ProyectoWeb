@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import Logo from "../../Components/Logo";
+import { createUser } from "../../Slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Register(){
     const [username, setUsername] = useState("");
@@ -12,6 +12,8 @@ export default function Register(){
     const [passwordError, setPasswordError] = useState (false);
 
     const [img,setImg] = useState();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const onImageChange = (e) => {
         const [file] = e.target.files;
@@ -39,6 +41,18 @@ export default function Register(){
     const handlerPassConf = (e) => {
         setPasswordConfirmation(e.target.value);
         setPasswordChanged(true);
+    }
+
+    const handleRegistration = (username,email,password,img) => {
+        dispatch(
+            createUser({
+                username,
+                email,
+                password,
+                img,
+            })
+        )
+        navigate("/login")
     }
 
     return (
@@ -112,6 +126,7 @@ export default function Register(){
                     className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                     hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
                     onClick={() => {
+                        handleRegistration(username, email, password, img);
                     }}
                 >
                     Registrarse
