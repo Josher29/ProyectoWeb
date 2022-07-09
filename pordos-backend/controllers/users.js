@@ -23,7 +23,6 @@ exports.loginUser = async (req, res) => {
           expiresIn: "5m",
         }
       );
-      delete user.password;
       const result = {
         user,
         token,
