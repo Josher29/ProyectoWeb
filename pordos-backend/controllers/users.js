@@ -55,12 +55,14 @@ exports.loginUser = async (req, res) => {
 
       users.map((u)=>{
         if(u.email == newUser.email){
-          res.status(409).send("Ya existe el usuario");
+          res.status(409).send("Ya existe el correo");
           err = true;
+          return;
         }
         if(u.name == newUser.name){
           res.status(409).send("Ya existe ese nombre de usuario. Intente con otro");
           err = true;
+          return;
         }
       });
 
