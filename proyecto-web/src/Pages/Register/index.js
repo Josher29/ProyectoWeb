@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../Slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Register(){
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -51,8 +52,13 @@ export default function Register(){
                 password,
                 img,
             })
-        )
-        navigate("/login")
+        ).then(result => {
+            console.log(result.payload.status);
+            if(result.payload.status === 200){
+                navigate("/login");
+            }
+        })
+        .catch(err => alert("No se pudo crear la cuenta, esto puede ser debido a que el usuario o el correo ya están en uso")) 
     }
 
     return (
