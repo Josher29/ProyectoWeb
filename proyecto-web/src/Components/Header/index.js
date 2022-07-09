@@ -1,6 +1,7 @@
 import Logo from "../Logo";
 import SearchBar from "../SearchBar";
 import {FaUserCircle} from "react-icons/fa"
+import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 function Header(){
@@ -20,6 +21,9 @@ function Header(){
                     <h2 className="">Bienvenido, Usuario!</h2>
                     <button onClick={() => navigate("/profile")}>
                         <FaUserCircle size="1.5rem" />
+                    </button>
+                    <button>
+                        <RiLogoutBoxRLine size= "1.5rem" />
                     </button>
                 </div>
             </div>
