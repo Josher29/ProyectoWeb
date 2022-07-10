@@ -11,10 +11,8 @@ function Header(){
 
     const dispatch = useDispatch();
 
-    const user = useSelector(
-        (state) => state.user.user
-       
-      );
+    const user = useSelector((state) => state.user.user.user);
+    console.log(user);
     const navigate = useNavigate(); 
    
 
@@ -29,7 +27,7 @@ function Header(){
                 </div>
                 <div className="w-1/2 flex gap-3 items-center justify-end">
                     <h2 className="">{user && user.name ? ` ¡Bienvenido ${user.name}!` : "¡Bienvenido!"}</h2>
-                    <button onClick={() => navigate("/profile")}>
+                    <button onClick={() => navigate(`/profile/${user.name}`)}>
                         <FaUserCircle size="1.5rem" />
                     </button>
                     <button

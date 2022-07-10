@@ -11,6 +11,8 @@ function Home() {
 
     const userIsLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+    
+
     const opinions = useSelector(
       (state) => state.opinion.opinions
     );
