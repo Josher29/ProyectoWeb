@@ -1,17 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Mixpanel from "../services/mixpanel";
 
 const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null,
         users: [],
-        isLoggedIn: false,
-    },
+        userIsLoggedIn: false,
+    },  
     reducers: {
         logout: (state) => {
             state.user = null;
-            state.isLoggedIn = false;
+            state.userIsLoggedIn = false;
         }
     },
     extraReducers(builder) {
