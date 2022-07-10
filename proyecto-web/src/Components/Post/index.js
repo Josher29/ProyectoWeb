@@ -1,4 +1,19 @@
+import { useSelector, useDispatch } from "react-redux";
+import {getAllThemes} from "../../Slices/themeSlice";
+import { useEffect } from "react";
+
 function Post(){
+    const themes = useSelector(
+        (state) => state.theme.themes
+      );
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getAllThemes());
+      },[dispatch])
+
+
     return (
         <>
             <div className="flex justify-center">
@@ -10,10 +25,11 @@ function Post(){
                 <div className="flex gap-3 items-center justify-end col-span-6">
                 <h3 className="font-bold text-lg"> Tema: </h3>
                 <select  className="m-3 p-3" name="cars" id="cars">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                    {themes.map((t)=>{
+                        return(
+                            <option value={t.name}>{t.name}</option>
+                        )
+                    })}
                 </select>
 
                 <button className="p-3 m-3 font-bold text-lg rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]

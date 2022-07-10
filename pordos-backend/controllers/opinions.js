@@ -50,3 +50,12 @@ exports.getOpinionByTheme = async(req,res) => {
         })
     }
 }
+
+exports.postOpinion = async(req,res) => {
+    try{
+        res.json(req.body);
+
+    }catch (error) {
+        res.status(500).send("Server error: " + error);
+    }
+}

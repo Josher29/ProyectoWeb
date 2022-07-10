@@ -15,7 +15,6 @@ function ThemeEntries(props){
         dispatch(getOpinionByTheme(props.theme));
     },[dispatch,props.theme])
     
-   
     return(
         <>
         
