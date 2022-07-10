@@ -5,6 +5,7 @@ const userSlice = createSlice({
     initialState: {
         user: null,
         userIsLoggedIn: false,
+        userRequested:null,
     },  
     reducers: {
         logout: (state) => {
@@ -70,7 +71,7 @@ export const postLogin = createAsyncThunk('/postLogin', async (credentials) => {
     }
 });
 
-export const getUser = createAsyncThunk('/profile/username', async(username) =>{
+export const getUser = createAsyncThunk('/profile/username',async(username) =>{
     const userFetch = await fetch(`http://localhost:7500/profile/${username}`);
     const userData = await userFetch.json();
     if(userFetch.status === 200){

@@ -3,32 +3,45 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Header from "../../Components/Header";
 import Modal from "../../Components/Modal";
-import SideBar from "../../Components/SideBar";
 import {getUser} from "../../Slices/userSlice";
 import UserEntries from "../../Components/UserEntries"
+import Entry from"../../Components/Entry";
+import {getOpinionByUserName} from "../../Slices/opinionSlice";
 
 function Profile (){
-
+    
+    
     const [showModal,setShowModal] = useState(false);
     const [img,setImg] = useState();
+    const user = useSelector((state) => state.user.user.user);
+    const {username} = useParams();
+
+    const dispatch = useDispatch();
+    console.log(username);
+    getUser(username);
+    getOpinionByUserName(username);
+
+    const userProfile = useSelector(
+        (state) => state.user
+    ); 
+
+    console.log(userProfile.userRequested)
+    const opinions = useSelector(
+        (state) => state.opinion.opinions
+    );
+    
 
     const onImageChange = (e) => {
         const [file] = e.target.files;
         setImg(URL.createObjectURL(file));
     };
 
-    const {username} = useParams();
-
-    const userRequested = useSelector(
-        (state) => state.user.userRequested
-    );
-
-    const dispatch = useDispatch();
-
     useEffect(()=>{
-        dispatch(getUser(username));
-    },[dispatch,username])
+        dispatch(getUser(username))
+        dispatch(getOpinionByUserName(username))
+    },[dispatch,username,],)
 
+   
 
     return(
         <>
@@ -41,23 +54,25 @@ function Profile (){
                         <img
                         className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
                         alt="perfil"
-                        src={userRequested.photo}
+                        src={userProfile.userRequested.photo}
                         />
                     </div>
                     <div className="flex flex-col items-center justify-center gap-3 ">
                         <div className="flex items-center w-full flex-wrap gap-3">
-                            <h1 className="font-bold text-lg">{userRequested.name}</h1>
-                            <button
-                            className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
-                            hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
-                            margin="1"
-                            size="xs"
-                            bgColor="bg-deepBlue"
-                            textColor="white"
-                            title="Edit Profile"
-                            onClick={() => {setShowModal(true)}}>
-                            Editar el perfil
-                            </button>
+                            <h1 className="font-bold text-lg">{userProfile.userRequested.name}</h1>
+                            {userProfile.userRequested.name === user.name ?
+                                <button
+                                className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
+                                hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
+                                margin="1"
+                                size="xs"
+                                bgColor="bg-deepBlue"
+                                textColor="white"
+                                title="Edit Profile"
+                                onClick={() => {setShowModal(true)}}>
+                                Editar el perfil
+                                </button> :
+                            <></> }
                             <Modal title="Editar perfil" open={showModal} onClose={()=>setShowModal(false)}>
                                 <p className="font-bold text-xl">Editar el perfil</p>
 
@@ -126,7 +141,7 @@ function Profile (){
                         </div>
                         <div className="flex md:self-start self-center">
                             <p className="font-normal text-sm text-black opacity-80">
-                            {userRequested.description}
+                            {userProfile.userRequested.description}
                             </p>
                         </div>
                     </div>
@@ -135,7 +150,13 @@ function Profile (){
                     <h1 className="text-2xl py-2 text-slate-900 font-bold">
                         {0 ? "Tus publicaciones" : "Sin publicaciones"}
                     </h1>
-                    <UserEntries username={userRequested.name}></UserEntries>
+                    {opinions.map((o) => {
+                         if(o.user_name === userProfile.userRequested.name){
+                            return (
+                            <Entry id={o.id} username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}></Entry>
+                            );
+                         }
+                        })}
                 </div>
             </div>
         </>

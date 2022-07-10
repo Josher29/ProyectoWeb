@@ -5,25 +5,27 @@ import { useEffect } from "react";
 
 
 function ThemeEntries(props){
+    
+
+    const dispatch = useDispatch();
+
     const themeOpinions = useSelector(
         (state) => state.opinion.opinions
     );
 
-    const dispatch = useDispatch();
-
     useEffect(()=>{
-        dispatch(getOpinionByTheme(props.theme));
-    },[dispatch,props.theme])
+        dispatch(getOpinionByTheme(props.theme))
+    },[dispatch,props.theme],)
     
     return(
         <>
-        
             {
             themeOpinions.map((t)=> {
-                console.log(themeOpinions)
+                console.log("to: "+themeOpinions[0])
+                if(t.theme_name === props.theme){
                 return(
-                   <Entry username={t.user_name} body={t.body} theme={t.theme_name} votes={t.votes}/>
-                );
+                   <Entry ops={themeOpinions} id={t.id} username={t.user_name} body={t.body} theme={t.theme_name} votes={t.votes}/>
+                );}
             })}
         
         

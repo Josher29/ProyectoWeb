@@ -13,16 +13,16 @@ function UserEntries(props){
 
     useEffect(()=>{
         dispatch(getOpinionByUserName(props.username));
-    },[dispatch,props.username])
+    },[dispatch,props.username,userOpinions],)
     
 
     return(
         <>
             {userOpinions.map((o)=> {
-                console.log(o);
+                if(o.user_name === props.username){
                 return(
-                    <Entry username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}/>
-                );
+                    <Entry id={o.id} username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}/>
+                );}
             })}
         
         

@@ -11,21 +11,16 @@ function Home() {
 
     const userIsLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
+    const dispatch = useDispatch();
     
-
     const opinions = useSelector(
       (state) => state.opinion.opinions
     );
-      
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
+    useEffect(()=>{
+        dispatch(getAllOpinions()); 
+    },[dispatch,],)
 
-    useEffect(() => {
-      dispatch(getAllOpinions()); 
-    }, [dispatch])
-
-    
     return !userIsLoggedIn ? (
       <Navigate to="/Login" />
       ) : (
@@ -41,7 +36,7 @@ function Home() {
               <h1 className="font-bold text-center m-12">Feed</h1>
               {opinions.map((o) => {
                 return (
-                  <Entry username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}></Entry>
+                  <Entry id={o.id} username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}></Entry>
                 );
               })}
             </div>

@@ -7,8 +7,8 @@ const opinionSlice = createSlice({
         reactions: 0,
     },
     reducers:{
-        addReaction: (state) => {
-            state.reactions++;
+        addReaction: (state,action) => {
+            state.opinions[action.payload.id].votes++;
         }
     },
     extraReducers(builder){
@@ -26,25 +26,36 @@ const opinionSlice = createSlice({
         })
         .addCase(getOpinionByUserName.fulfilled, (state,action) =>{
             if (action.payload.error) {
-                state.opinions = [];
+                state.opinionsbyName = [];
                 state.errorMessage = action.payload.message;
             } else {
-                state.opinions = action.payload;
+                state.opinionsbyName = action.payload;
             }
         })
         .addCase(getOpinionByUserName.rejected, (state) => {
-            state.opinions = [];
+            state.opinionsbyName = [];
         })
         .addCase(getOpinionByTheme.fulfilled, (state,action) =>{
             if (action.payload.error) {
-                state.opinions = [];
+                state.opinionsbyTheme = [];
                 state.errorMessage = action.payload.message;
             } else {
-                state.opinions = action.payload;
+                state.opinionsbyTheme = action.payload;
             }
         })
         .addCase(getOpinionByTheme.rejected, (state) => {
-            state.opinions = [];
+            state.opinionsbyTheme = [];
+        })
+        .addCase(getOpinionById.fulfilled, (state,action) =>{
+            if (action.payload.error) {
+                state.opinion = null;
+                state.errorMessage = action.payload.message;
+            } else {
+                state.opinion = action.payload;
+            }
+        })
+        .addCase(getOpinionById.rejected, (state) => {
+            state.opinion = null;
         })
     }
 })
@@ -92,6 +103,20 @@ export const getOpinionByTheme = createAsyncThunk('/themeOpinions/theme', async(
         }
     }
 })
+
+export const getOpinionById = createAsyncThunk("feed/id",async(id) => {
+    const opinionFetch = await fetch(`http://localhost:7500/feed/${id}`);
+    const opinionData = await opinionFetch.json();
+    if(opinionFetch.status === 200){
+        return opinionData;
+    }else{
+            return{
+                error:true,
+                message:opinionData.error.message,
+            }
+        }
+    })
+
 
 export const createOpinion = createAsyncThunk('/createOpinion',async(newOpinionData)=>{
     const newPostFetch = await fetch('http://localhost:7500/feed',{

@@ -40,9 +40,9 @@ exports.loginUser = async (req, res) => {
     try{
         users.map((u) =>{
             if(u.name === userName){
-               user = u;
-               res.json(user);
-               return;
+              user = u;
+              res.json(u);
+              return;
             }
         });
         if(!user){

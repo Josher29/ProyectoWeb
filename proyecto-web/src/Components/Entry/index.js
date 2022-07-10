@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addReaction } from "../../Slices/opinionSlice";
+import { useState } from "react";
+import { addReaction, getOpinionById, getAllOpinions } from "../../Slices/opinionSlice";
 
-function Entry(props){
-   
-    const reactionCounter = useSelector(
-        (state) => state.reactions
-      );
-
+function    Entry(props){
     const dispatch = useDispatch();
+   
+    //dispatch(getAllOpinions);
+
+    const reactionCounter = useSelector(
+        (state) => state.opinion.opinions
+      );
+    
+      console.log("ops: "+reactionCounter[0].votes);
+   
     return (
         <>
             <div className="flex justify-center">
@@ -21,13 +26,12 @@ function Entry(props){
                     <h2 className="ml-6 mt-3 font-bold items-start col-span-2">{props.username}, Opina sobre {props.theme} que:</h2>
                     <h3 className="m-3 h-20 border-2" >{props.body}</h3> 
                 </div>
-                <button onClick={() => { dispatch(addReaction()) }} 
+                <button onClick={() => {(dispatch(addReaction({id:props.id}))) }} 
                 className="w-24 h-12 col-start-5 p-1 m-1 font-bold text-lg rounded-md 
                 bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                 hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]">X2</button> 
-
                 <h2 className="font-bold mt-4 text-center text-lg">
-                    x<span>{props.votes}</span></h2>
+                    x<span>{reactionCounter[props.id].votes}</span></h2>
 
             
             </div>

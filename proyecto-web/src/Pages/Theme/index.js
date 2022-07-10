@@ -5,18 +5,30 @@ import Entry from"../../Components/Entry";
 import ThemeEntries from "../../Components/ThemeEntries";
 import { useDispatch, useSelector } from "react-redux";
 import { getThemeByName } from "../../Slices/themeSlice";
+import {getOpinionByTheme} from "../../Slices/opinionSlice";
 import { useParams } from "react-router-dom";
 
 
 function Theme(){
+    
+    const {themeName} = useParams(); 
+    const dispatch = useDispatch();
+    getThemeByName(themeName)
+    getOpinionByTheme(themeName)
+    
     const theme = useSelector(
         (state) => state.theme.theme
     );
-    const {themeName} = useParams();
-    const dispatch = useDispatch();
     
+    const opinions = useSelector(
+        (state) => state.opinion.opinions
+    );
+
+    console.log("consl: "+theme)
+  
     useEffect(()=>{
-        dispatch(getThemeByName(themeName));
+        dispatch(getThemeByName(themeName))
+        dispatch(getOpinionByTheme(themeName));
     },[dispatch,themeName])
 
     return(
@@ -38,7 +50,13 @@ function Theme(){
                         &nbsp;&nbsp;
                         <h2 className="font-bold text-lg"> Publicaciones </h2>
                         <div>
-                            <ThemeEntries theme={theme.name}></ThemeEntries>
+                        {opinions.map((o) => {
+                            if(o.theme_name === theme.name){
+                            return (
+                            <Entry id={o.id} username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}></Entry>
+                            );
+                        }
+                        })}
                         </div>
                     </div>
                 </div>

@@ -51,6 +51,28 @@ exports.getOpinionByTheme = async(req,res) => {
     }
 }
 
+exports.getOpinionById = async(req,res) => {
+    const id = req.params.id;
+    var find = false;
+    try{
+        opinions.map((o)=>{
+            
+            if(o.id == id){
+                res.json(o)
+                find = true;
+                return;
+            }
+        });
+        if(!find){res.status(400).send("No se encontró la entrada");}
+        
+    }catch(error){
+        res.status(500).json({
+            message:"Ocurrió un error al intentar recuperar la entrada.",
+            error
+        })
+    }
+}
+
 exports.postOpinion = async(req,res) => {
     try{
         const userPayload = req.body;
