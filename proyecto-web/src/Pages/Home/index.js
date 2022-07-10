@@ -25,7 +25,7 @@ function Home() {
           <Header />
           <SideBar></SideBar>
         </div>
-        <div className="h-screen bg-gray-50">
+        <div className="h-max bg-gray-50">
           <div>
             <Post></Post>
             <div>
