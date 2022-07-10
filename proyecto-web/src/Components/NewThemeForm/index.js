@@ -26,7 +26,6 @@ function NewThemeForm() {
         <>
                 <div className="m-10">
                     <p className="text-5xl">Crear tema</p>
-                        <form>
                             <div>
                                 <label>
                                     Portada:
@@ -106,7 +105,6 @@ function NewThemeForm() {
                                 Crear tema
                                 </button>   
                             </div>
-                        </form>
                     </div>
         </>
     );
