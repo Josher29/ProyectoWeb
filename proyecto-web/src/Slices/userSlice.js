@@ -9,23 +9,23 @@ const userSlice = createSlice({
     reducers: {
         logout: (state) => {
             state.user = null;
-            state.userIsLoggedIn = false;
+            state.isLoggedIn = false;
         }
     },
     extraReducers(builder) {
         builder
             .addCase(postLogin.fulfilled, (state, action) => {
                 if (action.payload.error) {
-                    state.userIsLoggedIn = false;
+                    state.isLoggedIn = false;
                     state.user = null;
                     state.errorMessage = action.payload.message;
                 } else {
-                    state.userIsLoggedIn = true;
+                    state.isLoggedIn = true;
                     state.user = action.payload;
                 }
             })
             .addCase(postLogin.rejected, (state) => {
-                state.userIsLoggedIn = false;
+                state.isLoggedIn = false;
                 state.user = null;
             })
             .addCase(getUser.fulfilled, (state, action) => {

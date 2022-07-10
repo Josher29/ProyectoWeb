@@ -9,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState("");
   
     const theme = useSelector((state) => state.app.theme);
-    const userIsLoggedIn = useSelector((state) => state.user.userIsLoggedIn);
+    const userIsLoggedIn = useSelector((state) => state.user.isLoggedIn);
     const errorMessage = useSelector((state) => state.user.errorMessage);
   
     const dispatch = useDispatch();
@@ -60,7 +60,7 @@ export default function Login() {
                       username,
                       password,
                     })
-                  );
+                  ).then(navigate("/"));
                 }}
               >
                 Iniciar Sesión

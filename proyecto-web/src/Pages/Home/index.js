@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import SideBar from "../../Components/SideBar";
 import Header from "../../Components/Header";
 import Post from "../../Components/Post";
@@ -8,19 +9,25 @@ import {getAllOpinions} from "../../Slices/opinionSlice";
 
 function Home() {
 
+    const userIsLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
     const opinions = useSelector(
       (state) => state.opinion.opinions
     );
-  
+      
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     useEffect(() => {
       dispatch(getAllOpinions()); 
     }, [dispatch])
 
-
-    return (
-      <>
+    
+    return !userIsLoggedIn ? (
+      <Navigate to="/Login" />
+      ) : (
+        <>
         <div>
           <Header />
           <SideBar></SideBar>
@@ -35,8 +42,6 @@ function Home() {
                   <Entry username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}></Entry>
                 );
               })}
-              
-              
             </div>
             
           </div>
