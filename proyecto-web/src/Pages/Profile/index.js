@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import Header from "../../Components/Header";
 import Modal from "../../Components/Modal";
 import SideBar from "../../Components/SideBar";
+import {getUser} from "../../Slices/userSlice";
 
 function Profile (){
 
@@ -12,6 +15,19 @@ function Profile (){
         const [file] = e.target.files;
         setImg(URL.createObjectURL(file));
     };
+
+    const {username} = useParams();
+
+    const userRequested = useSelector(
+        (state) => state.user.userRequested
+    );
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getUser(username));
+    },[dispatch,username])
+
 
     return(
         <>
@@ -24,12 +40,12 @@ function Profile (){
                         <img
                         className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
                         alt="perfil"
-                        src={"https://scontent.fsjo12-1.fna.fbcdn.net/v/t1.6435-9/29249653_1867862393237318_1048193034946084864_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=dFa4pCMlswEAX923kiX&_nc_ht=scontent.fsjo12-1.fna&oh=00_AT-N3LsMQy9YjvL8MkpzyczzOR2fGxypd9HMIe2GpPa8yw&oe=62EA0288"}
+                        src={userRequested.photo}
                         />
                     </div>
                     <div className="flex flex-col items-center justify-center gap-3 ">
                         <div className="flex items-center w-full flex-wrap gap-3">
-                            <h1 className="font-bold text-lg">{"David"}</h1>
+                            <h1 className="font-bold text-lg">{userRequested.name}</h1>
                             <button
                             className="h-[48px] w-full rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                             hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
@@ -109,7 +125,7 @@ function Profile (){
                         </div>
                         <div className="flex md:self-start self-center">
                             <p className="font-normal text-sm text-black opacity-80">
-                            Descripción del perfil 🚀
+                            {userRequested.description}
                             </p>
                         </div>
                     </div>

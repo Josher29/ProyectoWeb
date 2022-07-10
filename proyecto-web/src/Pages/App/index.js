@@ -27,8 +27,8 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="new-theme" element={<NewTheme />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="theme" element={<Theme />} />
+            <Route path="profile/:username" element={<Profile />} />
+            <Route path="theme/:themeName" element={<Theme />} />
             </Routes>
         </BrowserRouter>
     </MainContainer>

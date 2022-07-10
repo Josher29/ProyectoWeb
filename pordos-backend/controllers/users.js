@@ -34,6 +34,28 @@ exports.loginUser = async (req, res) => {
     }
   };
 
+  exports.getUser = async (req,res) => {
+    const userName = req.params.username;
+    var user;
+    try{
+        users.map((u) =>{
+            if(u.name === userName){
+               user = u;
+               res.json(user);
+               return;
+            }
+        });
+        if(!user){
+            res.status(404).send("No se encontró el usuario");
+        }
+    }catch(error){
+        res.status(500).json({
+            message:"Oucrrió un error al recuperar el perfil.",
+            error,
+        })
+    }
+  }
+
 
   exports.createUser = async (req, res) => {
     // #swagger.tags = ['Users']

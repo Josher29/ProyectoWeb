@@ -1,14 +1,22 @@
 import { useSelector, useDispatch } from "react-redux";
-import {BiMessageSquareDetail, BiUser } from "react-icons/bi";
-import { AiFillHome, AiOutlineUser } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import { AiFillBulb } from "react-icons/ai";
 import { IoMdCreate } from "react-icons/io";
-
+import {getAllThemes} from "../../Slices/themeSlice";
+import { useEffect } from "react";
 
 
 function SideBar(){
-    
-    const dispatch = useDispatch();
+    const themes = useSelector(
+      (state) => state.theme.themes
+    );
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+      dispatch(getAllThemes());
+    },[dispatch])
 
     return (
         <>
@@ -23,10 +31,17 @@ function SideBar(){
             </li>
           </ul>
           <div className="w-320">
-                <h1 className="mx-12 text-lg">Temas que sigues</h1>
-                <div className="mx-12 bg-gray-400 min-h-[400px]">
-                </div>
-              </div>
+                <h1 className="mx-12 text-lg font-bold">Temas que sigues</h1>
+                {themes.map((t) => {
+                  return (
+                    <div className="flex flex-row mx-12 my-3"  onClick={() => navigate(`/theme/${t.name}`)}>
+                      <AiFillBulb className="text-lg"/>
+                      <h2  className="text-lg text-center">{t.name}</h2>
+                    </div>
+                  );
+                })}
+          </div>
+              
         </div>
         
       </aside>

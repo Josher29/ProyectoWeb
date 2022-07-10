@@ -28,6 +28,20 @@ const userSlice = createSlice({
                 state.userIsLoggedIn = false;
                 state.user = null;
             })
+            .addCase(getUser.fulfilled, (state, action) => {
+                if (action.payload.error) {
+                    state.userRequested = null;
+                    state.errorMessage = action.payload.message;
+                } else {
+                    state.userRequested = action.payload;
+                }
+            })
+            .addCase(getUser.rejected, (state) => {
+                state.userRequested = null;
+            });
+
+        
+        
     }
 });
 
@@ -55,6 +69,22 @@ export const postLogin = createAsyncThunk('/postLogin', async (credentials) => {
         }
     }
 });
+
+export const getUser = createAsyncThunk('/profile/username', async(username) =>{
+    const userFetch = await fetch(`http://localhost:7500/profile/${username}`);
+    const userData = await userFetch.json();
+    if(userFetch.status === 200){
+        return userData;
+    }else{
+        return{
+            error:true,
+            message:userData.error.message,
+        }
+    }
+})
+
+
+
 
 export const createUser = createAsyncThunk('/createUser', async(newUserData) => {
     const newUserFetch = await fetch('http://localhost:7500/register',{

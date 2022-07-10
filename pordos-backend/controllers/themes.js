@@ -10,8 +10,33 @@ exports.getAllThemes = async (req, res) => {
             error,
           });
     }
-
 }
+
+
+exports.getThemeByName = async (req,res) =>{
+    const themeName = req.params.themeName;
+    var theme;
+    try{
+        themes.map((t) =>{
+            if(t.name === themeName){
+               theme = t;
+               res.json(theme);
+               return;
+            }
+        });
+        if(!theme){
+            res.status(404).send("No se encontró el tema");
+        }
+        
+
+    }catch(error){
+        res.status(500).json({
+            message:"Oucrrió un error al recuperar el tema.",
+            error,
+        })
+    }
+}
+
 
 exports.createTheme = async (req,res) => {
     try{

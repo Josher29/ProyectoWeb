@@ -3,6 +3,7 @@ import storage from "redux-persist/lib/storage";
 import appSlice from "./Slices/appSlice";
 import userSlice from "./Slices/userSlice";
 import opinionSlice from "./Slices/opinionSlice";
+import themeSlice from "./Slices/themeSlice";
 import {
   persistReducer,
   FLUSH,
@@ -17,7 +18,8 @@ import {
 const reducers = combineReducers({
   app: appSlice,
   user: userSlice,
-  opinion: opinionSlice
+  opinion: opinionSlice,
+  theme:themeSlice
 });
 
 const rootPersistConfig = {

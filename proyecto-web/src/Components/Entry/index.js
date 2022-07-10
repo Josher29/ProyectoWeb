@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addReaction } from "../../Slices/opinionSlice";
 
-function Entry(props
-
-){
+function Entry(props){
    
     const reactionCounter = useSelector(
         (state) => state.reactions

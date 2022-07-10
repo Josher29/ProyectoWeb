@@ -4,13 +4,40 @@ const themeSlice = createSlice({
     name: 'theme',
     initialState: {
         success: false,
-        theme: null,
+        themes: [],
+        theme: []
     },
     reducers: {
         cleanState: (state) => {
             state.success = false;
-            state.theme = null;
+            state.themes = null;
         }
+    },
+    extraReducers(builder){
+        builder
+        .addCase(getAllThemes.fulfilled,(state,action) =>{
+            if(action.payload.error){
+                state.themes = [];
+                state.errorMessage = action.payload.message;
+            }else{
+                state.themes = action.payload;
+            }
+        })
+        .addCase(getAllThemes.rejected, (state) => {
+            state.themes = [];
+        })
+        builder
+        .addCase(getThemeByName.rejected,(state)=>{
+            state.theme = null;
+        })
+        .addCase(getThemeByName.fulfilled,(state,action) =>{
+            if(action.payload.error){
+                state.theme = null;
+                state.errorMessage = action.payload.message;
+            }else{
+                state.theme = action.payload;
+            }
+        })
     }
 });
 
@@ -31,7 +58,7 @@ export const createTheme = createAsyncThunk('/themes',async(newThemeData) =>{
     const themeData = await newThemeFetch.json();
     console.log("status: ",newThemeFetch.status);
     if(newThemeFetch.status === 200){
-        return newThemeData;
+        return themeData;
     } else {
         return {
             error: true,
@@ -40,21 +67,31 @@ export const createTheme = createAsyncThunk('/themes',async(newThemeData) =>{
     }
 });
 
-export const getThemes = createAsyncThunk('/themes',async() =>{
-    const themesFetch = await fetch('http://localhost:7500/themes',{
-        method: 'GET',
-        headers: {
-            "Content-type":"application/json"
-        },
-    })
+export const getAllThemes = createAsyncThunk('/themes/themeName',async() =>{
+    const themesFetch = await fetch('http://localhost:7500/themes');
+    const themesData = await themesFetch.json();
     if (themesFetch.status === 200){
-        return themesFetch;
+        return themesData;
     } else {
         return {
             error: true,
-            message: themesFetch.error.message,
+            message: themesData.error.message,
         }
     }
 });
+
+export const getThemeByName = createAsyncThunk('/themes',async(themeName) => {
+    const themeFetch = await fetch(`http://localhost:7500/themes/${themeName}`);
+    const themeData = await themeFetch.json();
+    if(themeFetch.status === 200){
+        return themeData;
+    }else{
+        return{
+            error:true,
+            message:themeData.error.message,
+        }
+    }
+}
+)
 
 export default themeSlice.reducer;

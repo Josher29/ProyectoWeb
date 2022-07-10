@@ -9,5 +9,25 @@ exports.getAllOpinions = async (req, res) => {
             error,
           });
     }
+}
 
+exports.getOpinionByUserName = async(req,res) => {
+    const username = req.params.username;
+    var userOpinions = [];
+    try{
+        opinions.map((o)=>{
+            if(o.user_name === username){
+                userOpinions.push(o);
+            }   
+        });
+
+        res.json(userOpinions);
+
+
+    }catch(error){
+        res.status(500).json({
+            message:"Ocurrió un error al intentar recuperar las entradas.",
+            error
+        })
+    }
 }
