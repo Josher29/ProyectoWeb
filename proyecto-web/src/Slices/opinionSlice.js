@@ -24,6 +24,28 @@ const opinionSlice = createSlice({
         .addCase(getAllOpinions.rejected, (state) => {
             state.opinions = [];
         })
+        .addCase(getOpinionByUserName.fulfilled, (state,action) =>{
+            if (action.payload.error) {
+                state.opinions = [];
+                state.errorMessage = action.payload.message;
+            } else {
+                state.opinions = action.payload;
+            }
+        })
+        .addCase(getOpinionByUserName.rejected, (state) => {
+            state.opinions = [];
+        })
+        .addCase(getOpinionByTheme.fulfilled, (state,action) =>{
+            if (action.payload.error) {
+                state.opinions = [];
+                state.errorMessage = action.payload.message;
+            } else {
+                state.opinions = action.payload;
+            }
+        })
+        .addCase(getOpinionByTheme.rejected, (state) => {
+            state.opinions = [];
+        })
     }
 })
 
@@ -45,5 +67,30 @@ export const getAllOpinions = createAsyncThunk('opinions/getAllOpinions',async()
     }
 });
 
+export const getOpinionByUserName = createAsyncThunk('/user/username', async(username) =>{
+    const userOpinionsFetch = await fetch(`http://localhost:7500/user/${username}`);
+    const userOpinionsData = await userOpinionsFetch.json();
+    if(userOpinionsFetch.status === 200){
+        return userOpinionsData;
+    }else{
+        return{
+            error:true,
+            message:userOpinionsData.error.message,
+        }
+    }
+})
+
+export const getOpinionByTheme = createAsyncThunk('/themeOpinions/theme', async(theme) =>{
+    const userThemeFetch = await fetch(`http://localhost:7500/themeOpinions/${theme}`);
+    const userThemeData = await userThemeFetch.json();
+    if(userThemeFetch.status === 200){
+        return userThemeData;
+    }else{
+        return{
+            error:true,
+            message:userThemeData.error.message,
+        }
+    }
+})
 
 export default opinionSlice.reducer;

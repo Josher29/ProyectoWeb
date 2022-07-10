@@ -9,4 +9,5 @@ router.route("/login").post(loginUser);
 router.route("/register").post(createUser);
 router.route("/profile/:username").get(getUser);
 
+
 module.exports = router;

@@ -5,6 +5,7 @@ import Header from "../../Components/Header";
 import Modal from "../../Components/Modal";
 import SideBar from "../../Components/SideBar";
 import {getUser} from "../../Slices/userSlice";
+import UserEntries from "../../Components/UserEntries"
 
 function Profile (){
 
@@ -134,6 +135,7 @@ function Profile (){
                     <h1 className="text-2xl py-2 text-slate-900 font-bold">
                         {0 ? "Tus publicaciones" : "Sin publicaciones"}
                     </h1>
+                    <UserEntries username={userRequested.name}></UserEntries>
                 </div>
             </div>
         </>

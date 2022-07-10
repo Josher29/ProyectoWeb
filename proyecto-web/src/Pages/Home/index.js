@@ -32,7 +32,7 @@ function Home() {
               <h1 className="font-bold text-center m-12">Feed</h1>
               {opinions.map((o) => {
                 return (
-                  <Entry username={o.user_id} body={o.body} theme={o.theme_id} votes={o.votes}></Entry>
+                  <Entry username={o.user_name} body={o.body} theme={o.theme_name} votes={o.votes}></Entry>
                 );
               })}
               
