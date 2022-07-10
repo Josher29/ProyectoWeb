@@ -13,7 +13,8 @@ function NewTheme(){
             <Header />
             <SideBar />
         </div>
-        <div >
+        <div className="contents justify-center text-center" 
+        >
                 <NewThemeForm />
         </div>
     </div>

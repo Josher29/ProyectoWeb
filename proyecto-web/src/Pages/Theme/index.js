@@ -26,18 +26,18 @@ function Theme(){
                 <SideBar />
             </div>
             <div className="h-screen bg-gray-50">
-                <div className="contents">
+                <div className="contents justify-center text-center">
                     <img
-                                className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
+                                className="justify-center item-center mx-auto my-1 p-2 w-32 h-32 rounded-full"
                                 alt="perfil"
                                 src={theme.photo}
                     />
                     <h1 className="font-bold text-3xl">{theme.name}</h1>
                     <h2 className="font-bold">{theme.description}</h2>
                     <div className="justify-center text-center">
-                        <h2 className="font-bold text 2xl"> Publicaciones </h2>
+                        &nbsp;&nbsp;
+                        <h2 className="font-bold text-lg"> Publicaciones </h2>
                         <div>
-                            <Entry />
                             <ThemeEntries theme={theme.name}></ThemeEntries>
                         </div>
                     </div>

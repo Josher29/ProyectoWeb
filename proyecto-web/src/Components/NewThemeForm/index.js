@@ -88,7 +88,7 @@ function NewThemeForm() {
                                     </div>
                                 </label>
                             </div>
-                            <div className="w-1/2 flex justify-center">
+                            <div className=" flex justify-center">
                                 <button
                                     className="h-[48px] w-1/4 mt-2 rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                                     hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"
