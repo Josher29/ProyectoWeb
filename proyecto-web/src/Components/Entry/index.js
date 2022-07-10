@@ -1,15 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addReaction } from "../../Slices/reactionSlice";
+import { addReaction } from "../../Slices/opinionSlice";
 
-function Entry(
-    userProps,
-    themeProps,
-    postprops
+function Entry(props
 
 ){
    
     const reactionCounter = useSelector(
-        (state) => state.reaction.reactions
+        (state) => state.reactions
       );
 
     const dispatch = useDispatch();
@@ -23,8 +20,8 @@ function Entry(
                 
               
                 <div className="justify-start col-span-5 flex-col flex">
-                    <h2 className="ml-6 mt-3 font-bold items-start col-span-2">Usuario, Opina sobre *tema* que:</h2>
-                    <h3 className="m-3 h-20 border-2" >Opinion de usuario </h3> 
+                    <h2 className="ml-6 mt-3 font-bold items-start col-span-2">{props.username}, Opina sobre {props.theme} que:</h2>
+                    <h3 className="m-3 h-20 border-2" >{props.body}</h3> 
                 </div>
                 <button onClick={() => { dispatch(addReaction()) }} 
                 className="w-24 h-12 col-start-5 p-1 m-1 font-bold text-lg rounded-md 
@@ -32,7 +29,7 @@ function Entry(
                 hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]">X2</button> 
 
                 <h2 className="font-bold mt-4 text-center text-lg">
-                    x<span>{reactionCounter}</span></h2>
+                    x<span>{props.votes}</span></h2>
 
             
             </div>

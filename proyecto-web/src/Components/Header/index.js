@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "../Logo";
 import SearchBar from "../SearchBar";
@@ -10,7 +11,12 @@ function Header(){
 
     const dispatch = useDispatch();
 
-    const navigate = useNavigate();
+    const user = useSelector(
+        (state) => state.user.user
+       
+      );
+    const navigate = useNavigate(); 
+   
 
     return (
         <>
@@ -22,7 +28,7 @@ function Header(){
                     <SearchBar></SearchBar>
                 </div>
                 <div className="w-1/2 flex gap-3 items-center justify-end">
-                    <h2 className="">Bienvenido, Usuario!</h2>
+                    <h2 className="">{user && user.name ? ` ¡Bienvenido ${user.name}!` : "¡Bienvenido!"}</h2>
                     <button onClick={() => navigate("/profile")}>
                         <FaUserCircle size="1.5rem" />
                     </button>

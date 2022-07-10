@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import appSlice from "./Slices/appSlice";
 import userSlice from "./Slices/userSlice";
-import reactionSlice from "./Slices/reactionSlice";
+import opinionSlice from "./Slices/opinionSlice";
 import {
   persistReducer,
   FLUSH,
@@ -13,15 +13,16 @@ import {
   REGISTER
 } from 'redux-persist'
 
+
 const reducers = combineReducers({
   app: appSlice,
   user: userSlice,
-  reaction: reactionSlice
+  opinion: opinionSlice
 });
 
 const rootPersistConfig = {
   key: "root",
-  storage:storage,
+  storage,
 };
 const persistedReducer = persistReducer(rootPersistConfig, reducers);
 

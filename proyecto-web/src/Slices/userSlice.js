@@ -4,7 +4,6 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null,
-        users: [],
         userIsLoggedIn: false,
     },  
     reducers: {
@@ -47,7 +46,6 @@ export const postLogin = createAsyncThunk('/postLogin', async (credentials) => {
         }),
     });
     const userData = await loginFetch.json();
-    console.log("status",loginFetch.status)
     if (loginFetch.status === 200){
         return userData;
     } else {
