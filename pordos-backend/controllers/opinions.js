@@ -53,7 +53,21 @@ exports.getOpinionByTheme = async(req,res) => {
 
 exports.postOpinion = async(req,res) => {
     try{
-        res.json(req.body);
+        const userPayload = req.body;
+        const newOpinion = {
+            name:userPayload.name,
+            theme:userPayload.theme,
+            body:userPayload.body,
+            votes:0
+        }
+
+        if(!newOpinion.body){
+            res.status(400).send("Error. La opinión debe contener texto");
+            return;
+        }
+
+
+        res.json(newOpinion);
 
     }catch (error) {
         res.status(500).send("Server error: " + error);

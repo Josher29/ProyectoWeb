@@ -93,4 +93,30 @@ export const getOpinionByTheme = createAsyncThunk('/themeOpinions/theme', async(
     }
 })
 
+export const createOpinion = createAsyncThunk('/createOpinion',async(newOpinionData)=>{
+    const newPostFetch = await fetch('http://localhost:7500/feed',{
+        method:'POST',
+        headers:{
+            "Content-type":"application/json",
+        },
+        body: JSON.stringify({
+            name:newOpinionData.name,
+            theme:newOpinionData.theme,
+            body:newOpinionData.body,
+        }),
+    });
+
+    const newPostData = await newPostFetch.json();
+
+    if(newPostFetch.status === 200){
+        return newPostData;
+    }else{
+        return{
+            error:true,
+            message:newPostData.error.message,
+        }
+    }
+});
+
+
 export default opinionSlice.reducer;
