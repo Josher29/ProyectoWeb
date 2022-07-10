@@ -44,7 +44,7 @@ const themeSlice = createSlice({
 export const {cleanState} = themeSlice.actions;
 
 export const createTheme = createAsyncThunk('/themes',async(newThemeData) =>{
-    const newThemeFetch = await fetch('http://localhost:7500/theme',{
+    const newThemeFetch = await fetch('http://localhost:7500/themes',{
         method: 'POST',
         headers: {
             "Content-type":"application/json",
