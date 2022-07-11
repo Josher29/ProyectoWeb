@@ -1,6 +1,7 @@
 const opinions = require("../../proyecto-web/src/Data/Posts.json") //Get Opinions from JSON
 
 exports.getAllOpinions = async (req, res) => {
+     // #swagger.tags = ['Themes']
     try{
         res.json(opinions) //200
     }catch(error){
@@ -12,6 +13,7 @@ exports.getAllOpinions = async (req, res) => {
 }
 
 exports.getOpinionByUserName = async(req,res) => {
+     // #swagger.tags = ['Themes']
     const username = req.params.username;
     var userOpinions = [];
     try{
@@ -32,6 +34,7 @@ exports.getOpinionByUserName = async(req,res) => {
 }
 
 exports.getOpinionByTheme = async(req,res) => {
+     // #swagger.tags = ['Themes']
     const theme = req.params.theme;
     var themeOpinions = [];
     try{
@@ -52,6 +55,7 @@ exports.getOpinionByTheme = async(req,res) => {
 }
 
 exports.getOpinionById = async(req,res) => {
+     // #swagger.tags = ['Themes']
     const id = req.params.id;
     var find = false;
     try{
@@ -74,6 +78,7 @@ exports.getOpinionById = async(req,res) => {
 }
 
 exports.postOpinion = async(req,res) => {
+     // #swagger.tags = ['Themes']
     try{
         const userPayload = req.body;
         const newOpinion = {

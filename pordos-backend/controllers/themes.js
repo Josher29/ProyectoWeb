@@ -2,6 +2,7 @@ const themes = require("../../proyecto-web/src/Data/Themes.json") //Get Themes f
 
 
 exports.getAllThemes = async (req, res) => {
+    // #swagger.tags = ['Themes']
     try{
         res.json(themes) //200
     }catch(error){
@@ -14,6 +15,7 @@ exports.getAllThemes = async (req, res) => {
 
 
 exports.getThemeByName = async (req,res) =>{
+    // #swagger.tags = ['Themes']
     const themeName = req.params.themeName;
     var theme;
     try{
@@ -39,6 +41,7 @@ exports.getThemeByName = async (req,res) =>{
 
 
 exports.createTheme = async (req,res) => {
+    // #swagger.tags = ['Themes']
     try{
         const userPayload = req.body;
         var error = false;

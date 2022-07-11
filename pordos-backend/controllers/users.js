@@ -35,6 +35,7 @@ exports.loginUser = async (req, res) => {
   };
 
   exports.getUser = async (req,res) => {
+    // #swagger.tags = ['Users']
     const userName = req.params.username;
     var user;
     try{
@@ -59,11 +60,6 @@ exports.loginUser = async (req, res) => {
 
   exports.createUser = async (req, res) => {
     // #swagger.tags = ['Users']
-    /*  #swagger.parameters['obj'] = {
-            in: 'body',
-            description: 'Add a user',
-            schema: { $ref: '#/definitions/AddUser' }
-    } */
     try {
       const userPayload = req.body;
       var err = false;

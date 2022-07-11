@@ -31,11 +31,9 @@ function NewThemeForm() {
                                     Portada:
                                     <div>
                                         <input type="file" onChange={onImageChange} />
-                                        <div className="self-center">
-                                            <img
-                                            className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
-                                            src={img}
-                                            />
+                                        <div className="flex justify-center">
+                                            <img className="mx-2 my-1 object-center object-cover  p-2 w-32 h-32 rounded-full"
+                                            src={img} alt="selected theme img"/>
                                         </div>
                                     </div>
                                 </label>
@@ -88,7 +86,7 @@ function NewThemeForm() {
                                     </div>
                                 </label>
                             </div>
-                            <div className=" flex justify-center">
+                            <div className="flex justify-center">
                                 <button
                                     className="h-[48px] w-1/4 mt-2 rounded-md bg-gradient-to-r from-[#e8d273] via-[#f8e181] to-[#fffb99]
                                     hover:from-[#fffb99] hover:via-[#f8e181] hover:to-[#e8d273]"

@@ -32,8 +32,8 @@ function Header(){
                     </button>
                     <button
                         onClick={() => { 
+                            dispatch(logout()).then(navigate("/login"));
                             Mixpanel.track(Mixpanel.TYPES.LOG_OUT);
-                            dispatch(logout()).then(navigate("/login"))
                             }} 
                             
                             >
