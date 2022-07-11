@@ -18,14 +18,14 @@ function Profile (){
 
     const dispatch = useDispatch();
     console.log(username);
-    getUser(username);
+    //dispatch(getUser(username));
     getOpinionByUserName(username);
 
     const userProfile = useSelector(
         (state) => state.user
     ); 
 
-    console.log(userProfile.userRequested)
+    console.log(userProfile)
     const opinions = useSelector(
         (state) => state.opinion.opinions
     );
