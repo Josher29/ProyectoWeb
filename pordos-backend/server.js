@@ -6,6 +6,8 @@ const multerS3 = require("multer-s3");
 const swaggerUI = require("swagger-ui-express");
 const cors = require("cors");
 
+const swaggerFile = require("./swagger.json");
+
 dotenv.config();
 
 const server = express();
@@ -24,10 +26,11 @@ server.use(opinionRoutes);
 //server.use("/products", productsRoutes);
 
 //Documentation setup
-//server.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile));
+server.use("/docs",swaggerUI.serve,swaggerUI.setup(swaggerFile));
 
 server.listen(7500);
 console.log(
   `The server is running at http://localhost:${process.env.PORT || 7500}
    You can find the docs at http://localhost:${process.env.PORT || 7500}/docs`
 );
+

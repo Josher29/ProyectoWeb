@@ -6,6 +6,7 @@ import {FaUserCircle} from "react-icons/fa"
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../Slices/userSlice";
+import Mixpanel from "../../services/mixpanel";
 
 function Header(){
 
@@ -30,8 +31,12 @@ function Header(){
                         <FaUserCircle size="1.5rem" />
                     </button>
                     <button
-                        onClick={() =>  dispatch(logout()).then(
-                        navigate("/login"))} >
+                        onClick={() => { 
+                            Mixpanel.track(Mixpanel.TYPES.LOG_OUT);
+                            dispatch(logout()).then(navigate("/login"))
+                            }} 
+                            
+                            >
                         <RiLogoutBoxRLine size= "1.5rem" />
                     </button>
                 </div>

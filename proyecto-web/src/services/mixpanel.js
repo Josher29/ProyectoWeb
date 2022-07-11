@@ -9,11 +9,22 @@ const Mixpanel = {
     identify: (id) => {
         mixpanel.identify(id);
     },
+    alias: (id) => {
+        mixpanel.alias(id);
+    },
+    track: (name, props) => {
+        mixpanel.track(name, props);
+    },
     people: {
-        set: (props) =>{
-            mixpanel.people.set.apply(props);
+        set: (props) => {
+            mixpanel.people.set(props);
         }
+    },
+    TYPES: {
+        OPEN_PROFILE: "OPEN_PROFILE",
+        LOG_OUT: "LOG_OUT",
+        OPEN_THEME_BY_SIDEBAR: "OPEN_THEME_BY_SIDEBAR",
     }
-}
+};
 
 export default Mixpanel;
